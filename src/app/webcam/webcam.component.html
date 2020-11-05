@@ -1,6 +1,29 @@
-<p>webcam works!</p>
-<button (click)="connect()">Connect</button>
-<div *ngIf="image">
-  <p>Image below</p>
-  <img [src]="image">
-</div>
+<section>
+  <div class="example-button-row" *ngIf="!image" [@openClose]="isOpen ? 'closed' : 'open'">
+    <div class="example-flex-container">
+      <div class="example-button-container">
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="connect()">
+          <mat-icon>camera_alt</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+          <mat-icon>bookmark</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button mat-fab disabled aria-label="Example icon button with a heart icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+    <img [src]="image">
+  </div>
+</section>

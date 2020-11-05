@@ -5,15 +5,34 @@ import { environment } from '../../environments/environment';
 import { catchError, tap, switchAll } from 'rxjs/operators';
 import { EMPTY, Subject } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { trigger, transition, state, animate, style, AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: 'app-webcam',
+  animations: [
+      trigger('openClose', [
+        // ...
+        state('open', style({
+          opacity: 1
+        })),
+        state('closed', style({
+          opacity: 0.0
+        })),
+        transition('open => closed', [
+          animate('0.5s')
+        ]),
+        transition('closed => open', [
+          animate('1s')
+        ]),
+      ]),
+    ],
   templateUrl: './webcam.component.html',
   styleUrls: ['./webcam.component.css']
 })
 export class WebcamComponent implements OnInit {
 
   image: any;
+  isOpen:boolean = false;
 
   constructor(private domSanitizer: DomSanitizer) { }
 
@@ -37,6 +56,7 @@ export class WebcamComponent implements OnInit {
               if(type && type == 'image') {
                 this.image = this.domSanitizer.bypassSecurityTrustUrl("data:image/jpg;base64, " + data.image);
                 console.log("this.image :" , this.image);
+                this.isOpen = true;
               }
              },
              // Called whenever there is a message from the server
