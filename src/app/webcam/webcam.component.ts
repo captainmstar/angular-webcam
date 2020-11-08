@@ -37,13 +37,12 @@ export class WebcamComponent implements OnInit {
   constructor(private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.connect();
   }
 
   private myWebSocket: WebSocketSubject<any>;
 
   public connect(): void {
-      this.myWebSocket = webSocket('ws://192.168.1.65:80');
+      this.myWebSocket = webSocket('ws://192.168.1.69:80');
       console.log("OPEN");
       this.myWebSocket.subscribe(
              msg => {
