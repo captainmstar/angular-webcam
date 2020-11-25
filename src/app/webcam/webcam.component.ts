@@ -42,7 +42,7 @@ export class WebcamComponent implements OnInit {
   private myWebSocket: WebSocketSubject<any>;
 
   public connect(): void {
-      this.myWebSocket = webSocket('ws://192.168.1.69:80');
+      this.myWebSocket = webSocket('ws://10.27.1.80:80');
       console.log("OPEN");
       this.myWebSocket.subscribe(
              msg => {
